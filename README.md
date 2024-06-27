@@ -1,2 +1,2 @@
 # Learning_to_build_a_database
-學習一下如何用C語言做出一個簡單的資料庫，好奇背後的原理。
+紀錄一下學習的內容
