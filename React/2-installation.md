@@ -1,83 +1,87 @@
-# **Create React App 方案**
+# **Create React App Approach**
 
-推薦優先考慮使用 Create React App 來建立你的開發環境，它已經能滿足絕大多數的專案需求，並且幾乎無痛完成環境設置。當真的有較高的客製化需求時，再考慮自己手建環境，而工具的選擇最主流的應該還是 Babel + Webpack 的組合，不過你也可以根據自己的需求去替換成其它的類似工具。而如果不只是開發環境，而是整個應用程式都有更進階的需求時（例如 Server-side rendering），才會建議考慮選擇如 Next.js 等框架方案。
+It's highly recommended to use Create React App for setting up your development environment. It meets the needs of most projects and handles the setup almost painlessly. Only consider building your environment manually if you have higher customization requirements. The most mainstream tools combination for manual setup would be Babel + Webpack, but you can swap them out for similar tools based on your needs. If you have more advanced needs beyond just the development environment (e.g., Server-side rendering), consider using frameworks like Next.js.
 
-# Quick Start (快速開始)
+# Quick Start
 
 ```jsx
 npx create-react-app my-app
 cd my-app
 npm start
+
 ```
 
 1. **npx create-react-app my-app**
-    - `npx` 是 npm 5.2+ 及更高版本自帶的工具。這個命令會使用 Create React App 來創建一個名為 `my-app` 的新 React 項目。
+    - `npx` is a tool that comes with npm 5.2+ and higher. This command uses Create React App to create a new React project named `my-app`.
 2. **cd my-app**
-    - 這個命令會進入剛剛創建的 `my-app` 項目的目錄。
+    - This command navigates into the directory of the newly created `my-app` project.
 3. **npm start**
-    - 這個命令會啟動開發伺服器並打開應用程式的預覽頁面。預設情況下，它會在 `http://localhost:3000/` 運行你的應用程式。
+    - This command starts the development server and opens a preview of your app. By default, it runs your app at `http://localhost:3000/`.
 
-### 運行應用程式
+### Running Your Application
 
-- 當你啟動開發伺服器後，可以打開瀏覽器並輸入 `http://localhost:3000/` 來查看你的應用程式。
+- Once the development server is started, you can open your browser and go to `http://localhost:3000/` to see your application.
 
-### 部署到生產環境
+### Deploying to Production
 
-- 當你準備將應用程式部署到生產環境時，可以使用 `npm run build` 來創建一個最小化的包。這個命令會生成優化後的靜態文件，以便在生產環境中高效運行。
+- When you're ready to deploy your application to a production environment, you can use `npm run build` to create a minified bundle. This command generates optimized static files for efficient performance in a production environment.
 
-不過由於它將內建的的 Babel、Webpack 等細節設定都封裝並隱藏起來，因此雖然大多專案的需求下你都可以直接使用它預設的配置，但當你有比較複雜的客製化需求時就會遇到一些限制。因此當你遇到複雜且有高度客製化建置需求的 React 專案時，還是可以考慮自己手動建置開發環境以換取最大的自由度與彈性。
+While Create React App abstracts and hides the detailed settings of Babel, Webpack, etc., it usually suffices for most project needs. However, for complex and highly customized React projects, you might encounter some limitations. In such cases, consider manually setting up your development environment to gain maximum flexibility.
 
-# **手動建置環境方案**
+# **Manual Setup Approach**
 
-當專案建置環境有比較客製化的需求時，或為了真正搞懂 React 建置環境的細節，仍然值得去研究並瞭解要如何自己手把手的建立 React 開發環境。因此這裡主要會先點出 React 開發環境的必須元素以及為什麼我們需要它們，至於細節的設定方法網路上有非常多的學習資源可以參考。
+When your project has more specific customization needs, or you really want to understand the details of the React setup, it's worthwhile to learn how to manually create a React development environment. Here, we'll outline the essential elements of a React development environment and explain why we need them. Detailed setup methods can be found in numerous online resources.
 
-# **React 開發環境建置的必要條件**
+# **Essential Requirements for React Development Environment**
 
-在嘗試自己動手建置前當然是要先了解 React 開發環境哪些需求是必須要滿足的：
+Before attempting to set up your own environment, it's important to understand the necessary requirements for a React development environment:
 
 - JSX transformer
     
-    在絕大多數情況下，我們都會使用 JSX 語法來進行 React 的開發，因此將 JSX 語法轉換成瀏覽器能夠執行的普通 JS 語法就幾乎成了必要的需求。通常有兩種方式可以做到這件事情：事前靜態轉換，以及 runtime 即時的轉換
+    In most cases, we use JSX syntax to develop React applications, so converting JSX to regular JavaScript that browsers can execute becomes almost a necessity. There are two main ways to achieve this: pre-compilation and runtime transformation.
     
-    - 以 transpiler 進行事前靜態轉換
-        - 也就是在開發階段就以專用的轉換工具來將包含 JSX 語法的程式碼轉換成普通的 JS 程式碼，然後瀏覽器實際上就直接吃已經事先轉換好的版本來執行。最主流的 transpiler 選擇像是 [Babel](https://babeljs.io/) 或是 [TypeScript](https://www.typescriptlang.org/) 都有支援 JSX 的轉換功能。這也是我們通常會在開發環境採用的預設方案。並且由於效能考量，這個方式在 production build 時有其必要性
-        - 以最常採用的 babel 為例，我們會需要 [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) 這個 plugin 來幫我們做 JSX 的轉換，而我們通常會直接使用已經包含這個 plugin 的 [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react) 來設定在 babel config 當中
-    - 以 CDN 作 runtime 的即時轉換
-        - 直接在瀏覽器中讀取尚未被轉換的 JSX 程式碼，並依靠 runtime transpiler 即時的翻譯來轉換成普通 JS
-        - 例如 babel 有提供 runtime 版本的 standalone，可以作為 CDN 直接引入。只要在包含 JSX 語法的 `<script>` 標籤上標注 `type="text/jsx"`，babel runtime 就會自動即時將其 JSX 語法進行轉換後再執行：
-            
-            ```html
-            <!DOCTYPE html>
-            <html>
-              <body>
-                <div id="app"></div>
-            <!-- 引入 React --><script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-                <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-            <!-- 引入 Babel runtime --><script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-                <script type="text/jsx">
-                  const root = ReactDOM.createRoot(document.querySelector('#app'));
-            // 可以直接在這裡寫 JSX 語法，runtime babel 會即時在瀏覽器端即時轉換後才執行
-                  root.render(<h1>Hello, world!</h1>);
-                </script>
-              </body>
-            </html>
-            解釋
-            
-            ```
-            
-        - 這樣做等同於每次瀏覽器在 JSX 相關的程式執行前都必須花費時間與效能先進行完即時的轉換後，才能開始運行，因此龐大且複雜的應用程式場景時可能有嚴重的效能隱憂
-        - 因此非常不建議以這種做法來作為正式的本地開發環境，更完全不應該用於 production build。通常會這樣做是在快速實作一段純演示性質的程式程式的時候才比較合適，例如：在 JSFiddle、codepen 上快速建立一個 React 範例
-- 支援 ES6+ 語法
+    - Using a transpiler for pre-compilation
+        - This involves using specialized tools during development to convert JSX code to regular JavaScript, which the browser then directly executes. The most popular transpilers like [Babel](https://babeljs.io/) or [TypeScript](https://www.typescriptlang.org/) support JSX transformation. This is the default approach in development environments and necessary for production builds due to performance considerations.
+        - For example, with Babel, you would use the [@babel/plugin-transform-react-jsx](https://babeljs.io/docs/en/babel-plugin-transform-react-jsx) plugin to handle JSX transformation, and typically configure it using [@babel/preset-react](https://babeljs.io/docs/en/babel-preset-react).
+    - Using a CDN for runtime transformation
+        - This method involves reading JSX code directly in the browser and using a runtime transpiler to convert it to regular JavaScript on-the-fly.
+        - For instance, Babel offers a runtime version that can be included via CDN. By marking `<script>` tags containing JSX with `type="text/jsx"`, the Babel runtime automatically transforms the JSX before execution:
+        
+        ```html
+        <!DOCTYPE html>
+        <html>
+          <body>
+            <div id="app"></div>
+            <!-- Load React -->
+            <script src="<https://unpkg.com/react@18/umd/react.development.js>" crossorigin></script>
+            <script src="<https://unpkg.com/react-dom@18/umd/react-dom.development.js>" crossorigin></script>
+            <!-- Load Babel runtime -->
+            <script src="<https://unpkg.com/@babel/standalone/babel.min.js>"></script>
+            <script type="text/jsx">
+              const root = ReactDOM.createRoot(document.querySelector('#app'));
+              // You can write JSX here, and Babel will transform it in the browser
+              root.render(<h1>Hello, world!</h1>);
+            </script>
+          </body>
+        </html>
+        
+        ```
+        
+        - However, this approach requires browsers to spend time and resources transforming JSX on each execution, which can lead to significant performance issues in large and complex applications.
+        - Therefore, it's not recommended to use this method for local development and definitely not for production builds. It's more suitable for quick demonstrations or examples on platforms like JSFiddle or CodePen.
+- ES6+ syntax support
     
-    除了 JSX 語法之外，在 React 官方或社群推薦的寫法 best practice 中也處處可見使用到較新的 ES6+ 語法，像是陣列解構、物件解構、spread、rest、arrow function…等等，而這些語法仍然會面臨較老舊瀏覽器的向下相容問題
+    In addition to JSX, best practices in React development often use newer ES6+ syntax, such as array and object destructuring, spread, rest, arrow functions, etc. These newer syntaxes can face compatibility issues with older browsers.
     
-    - 依靠使用者瀏覽器本身原生支援
-        - 當然，如果專案本來就完全不打算支援較老舊的瀏覽器，或是也沒有使用到一些更新更潮的語法的話，也可以選擇不處理特別這個問題，讓這些語法在使用者的瀏覽器上直接執行。不過由於通常我們難以控制使用者所使用的瀏覽器種類或版本，時至今日，針對這些近年較新的 ES 語法進行向下相容的轉換仍然有其一定的必要性
-    - 以 transpiler 轉換向下相容
-        - 如果希望夠過向下相容的轉換來保證能在更多的瀏覽器上執行你的程式碼的話，transpiler 仍然是一個目前推薦的解決方案。如果你使用 babel 的話，通常我們會使用官方已經套裝好的成熟 presets [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env)，裡面已經內置好所有常見的 ES6+ 語法轉換功能，並且你也可以透過指定目標的瀏覽器支援範圍，來讓他動態的決定哪些語法需要轉換而哪些可以不用
-- 支援 ES module
+    - Relying on native browser support
+        - If your project doesn't need to support older browsers or doesn't use newer syntax, you might skip this. However, since it's hard to control what browsers users might use, ensuring compatibility with newer ES syntax through transpilers is still necessary.
+    - Transpiling for backward compatibility
+        - To ensure your code runs on a wider range of browsers, using a transpiler is recommended. With Babel, you can use the [@babel/preset-env](https://babeljs.io/docs/en/babel-preset-env), which includes all common ES6+ syntax transformations and dynamically decides which transformations are needed based on your target browser support.
+- ES module support
     
-    最後，React 也非常早就擁抱了現代化前端工程中的重要技術：模組化。尤其是在基於 component base 的開發方式下，我們很常會將不同的 component 拆分成不同的檔案，並且互不干擾，只有在有需要時才手動相互引用。因此設置一個可以支援 ES module 的環境也是 React 開發幾乎必須的條件
+    React has long embraced modern front-end engineering techniques, particularly modularity. In component-based development, we often split different components into separate files, importing them as needed. Therefore, setting up an environment that supports ES modules is crucial for React development.
     
-    - 用 module bundler 打包
-        - 雖然 ES module 語法規格在 2015 年的 ES6 時就已經推出了，但是瀏覽器上的實際原生支援是一直到近兩年才開始慢慢實現，並且相關的整合以及應用也還沒有到非常普及，因此大多情況下我們還是會需要 module bundler 工具來幫我們將本地以 ES module 撰寫的 JS 原始碼們的打包成少數的幾隻 JS 檔案，主流的選擇如：[Webpack](https://webpack.js.org/)、[Parcel](https://parceljs.org/) 以及最近非常火紅的 [Vite](https://vitejs.dev/)
+    - Using a module bundler
+        - Although ES module syntax was introduced in ES6 (2015), native browser support has only become widespread in recent years. Thus, we often need module bundlers to package locally written ES module code into a few JS files. Popular choices include [Webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), and the recently popular [Vite](https://vitejs.dev/).
+
+By understanding and setting up these essential elements, you'll be well-equipped to create a highly customized and efficient React development environment.
