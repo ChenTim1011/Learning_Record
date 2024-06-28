@@ -1,2 +1,3 @@
 # Learning_record
-紀錄一下學習的內容，學習知識超級開心，當兵的時候可以複習一下。
+Recording the learning content, learning new knowledge is super exciting. 
+I can review this while serving in the military.

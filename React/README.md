@@ -1,7 +1,7 @@
-2024/6/28 主要是學習一下開發工具的部分，專案前端使用React，想先學一下基本知識<br>
+I mainly want to learn about development tools, specifically for a project that uses React on the frontend. I want to start by understanding the basics.
 
-因為知識有兩種，你知道不知道的部分和你不知道不知道的部分，前面那種可以用AI解決，但是後面這種就沒有辦法<br>
-所以想先些掌握一下React知識，再用AI輔助開發才知道要怎麼樣改和下Prompt會比較精準。<br>
+Knowledge can be categorized into two types: what you know you don't know and unknown unknown. The former can be addressed with AI, but the latter cannot. Therefore, I want to first grasp some foundational knowledge about React, so that I can better use AI to assist in development and make more accurate prompts for changes and improvements.
 
-內容來自很多網站的教學文章混合。<br>
+The content is a mix of tutorials from various websites.
+
 
