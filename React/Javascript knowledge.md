@@ -1,3 +1,5 @@
+以下內容擷取自各教學文章
+
 ### React 的難易點
 
 - **JavaScript 基礎：** React 大量機制依賴 JavaScript 核心特性，JavaScript 基礎不穩會導致學習困難。因此，我建議先鞏固 JavaScript 基本功再學習 React。
@@ -12,6 +14,36 @@
 ### 實作與理解融合：
 
 需要投入時間理解設計思想並融會貫通，將其內化到思考模型中，這樣的學習才有意義且能長久。
+
+
+### JavaScript 核心特性 / 語法
+
+1. **Closure (閉包)**
+    - 在 function component 中大量應用 closure 來定義 event handlers 以及配合 hooks，並且以此特性來保持資料流。
+    
+2. **Arrow Function (箭頭函數)**
+    - 在 function component 中常用來方便定義 event handlers 或 effect。
+    
+3. **Primitive types & Object types (原始型別與物件型別)**
+    - React 是以 immutable 的概念設計資料流，理解 object types 及其比較觀念非常重要。
+    
+4. **Compare (比較)**
+    - 理解 Object.is、Object shallow equal & deep equal 在 React 中非常重要。
+    
+5. **Array Methods: map, filter, slice**
+    - 在資料的 immutable update 操作時會大量使用這些方法。
+
+6. **Destructuring, Spread, Rest (解構賦值、展開運算子、其餘運算子)**
+    - 在 props 資料解構和拆分、useState 返回值解構、物件 state immutable update 等地方頻繁使用。
+      
+7. **ES Module & import/export**
+    - React 採用現代化前端工程中的模組化技術，常將不同的 component 拆分成不同的檔案。
+
+8. **Promise、async/await**
+    - 處理非同步請求時會接觸到，但與 React 本身比較沒有直接關係。
+
+
+
 
 ### 1. Closure
 
@@ -1576,7 +1608,6 @@ console.log(2);
 
 ```
 
-!https://www.oxxostudio.tw/img/articles/201908/js-async-await-03.gif
 
 # 搭配 Fetch
 
