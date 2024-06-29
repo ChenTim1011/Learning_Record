@@ -1,18 +1,18 @@
-bits 16 ; 告訴NASM這是16位元程式碼
-org 0x7c00 ; 起始地址為0x7C00 告訴NASM從偏移量0x7c00開始輸出
-boot: ;程式的起始標籤
-    mov si, hello ; 指向hello標籤所在的記憶體位置
-    mov ah, 0x0e ; 0x0e表示'Write Character in TTY mode'
+bits 16         ; Tell NASM this is 16-bit code
+org 0x7c00      ; Set the starting address to 0x7C00, telling NASM to output starting at offset 0x7C00
+boot:           ; The starting label of the program
+    mov si, hello  ; Point SI register to the memory location of the 'hello' label
+    mov ah, 0x0e   ; Set AH register to 0x0e, which indicates 'Write Character in TTY mode'
 .loop:
-    lodsb
-    or al, al ; al == 0 ?
-    jz halt  ; 如果al == 0，跳轉到halt標籤
-    int 0x10 ; 執行BIOS中斷0x10 - 視訊服務
-    jmp .loop
+    lodsb          ; Load byte at address in SI into AL and increment SI
+    or al, al      ; Check if AL == 0 (null terminator)
+    jz halt        ; If AL == 0, jump to the 'halt' label
+    int 0x10       ; Execute BIOS interrupt 0x10 - Video services
+    jmp .loop      ; Jump back to the start of the loop
 halt:
-    cli ; 清除中斷標誌
-    hlt ; 停止執行
-hello: db "Hello world!", 0
+    cli            ; Clear interrupt flag
+    hlt            ; Halt the CPU
+hello: db "Hello world!", 0  ; Define a null-terminated string "Hello world!"
 
-times 510 - ($ - $$) db 0 ; 填充剩下的510位元組為零
-dw 0xaa55 ; 魔法引導載入器標記 - 標記這個512位元組扇區為可引導
+times 510 - ($ - $$) db 0  ; Fill the remaining bytes to make the total size 510 bytes with zeros
+dw 0xaa55         ; Bootloader signature - marks this 512-byte sector as bootable

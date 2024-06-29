@@ -1,84 +1,97 @@
-### 撰寫一個簡單的32位元x86作業系統核心：Hello World Bootloader
+### Writing a Simple 32-bit x86 Operating System Kernel: From "Hello World!" to Complexity
 
-從頭開始撰寫一個簡單的32位元x86作業系統核心。我們將從顯示"Hello world!"開始，逐步增加程式的複雜度，最終使用C++。這裡是詳細的步驟和說明。
+We will start from scratch to write a simple 32-bit x86 operating system kernel. We'll begin by displaying "Hello World!" on the screen and gradually increase the complexity of the program, eventually using C++. Here are the detailed steps and explanations.
 
+### 1. Installing Necessary Tools
 
-### 1. 安裝必要工具
-
-### 在Linux或WSL上安裝NASM組譯器和QEMU虛擬機器
+### Install NASM Assembler and QEMU Emulator on Linux or WSL
 
 ```bash
-
 sudo apt-get install nasm qemu
 
 ```
 
-### 什麼是NASM？
+### What is NASM?
 
-NASM（Netwide Assembler）是一個開源的x86組合語言組譯器，支援16位、32位和64位的x86架構。它被設計用來生成高效的機器碼，並且擁有靈活的語法和強大的宏系統。
+NASM (Netwide Assembler) is an open-source x86 assembler that supports 16-bit, 32-bit, and 64-bit x86 architectures. It is designed to generate efficient machine code and has flexible syntax and a powerful macro system.
 
-### 什麼是QEMU？
+### What is QEMU?
 
-QEMU是一個開源的虛擬機器模擬器，可以模擬多種CPU架構和硬體。它允許你在不同作業系統和硬體環境中運行和測試作業系統。QEMU非常適合用來開發和測試操作系統，因為它可以模擬虛擬機器，而不會影響到你的真實硬體。
+QEMU is an open-source virtual machine emulator that can emulate various CPU architectures and hardware. It allows you to run and test operating systems in different environments without affecting your real hardware. QEMU is ideal for developing and testing operating systems as it can simulate virtual machines safely.
 
-### 在Windows 10上安裝X Server
+### Installing X Server on Windows 10
 
-在Windows 10上，你需要安裝一個X Server來允許QEMU從Linux子系統打開一個視窗。 
+On Windows 10, you need to install an X Server to allow QEMU to open a window from the Linux subsystem.
 
-### 2. 撰寫Hello World Bootloader
+### 2. Writing the Hello World Bootloader
 
-### 程式碼
+### Code
 
 ```
-
-bits 16 ; 告訴NASM這是16位元程式碼
-org 0x7c00 ; 起始地址為0x7C00 告訴NASM從偏移量0x7c00開始輸出
-boot: ;程式的起始標籤
-    mov si, hello ; 指向hello標籤所在的記憶體位置
-    mov ah, 0x0e ; 0x0e表示'Write Character in TTY mode'
+bits 16         ; Tell NASM this is 16-bit code
+org 0x7c00      ; Set the starting address to 0x7C00
+boot:           ; The starting label of the program
+    mov si, hello  ; Point SI register to the memory location of the 'hello' label
+    mov ah, 0x0e   ; Set AH register to 0x0e, which indicates 'Write Character in TTY mode'
 .loop:
-    lodsb
-    or al, al ; al == 0 ?
-    jz halt  ; 如果al == 0，跳轉到halt標籤
-    int 0x10 ; 執行BIOS中斷0x10 - 視訊服務
-    jmp .loop
+    lodsb          ; Load byte at address in SI into AL and increment SI
+    or al, al      ; Check if AL == 0 (null terminator)
+    jz halt        ; If AL == 0, jump to the 'halt' label
+    int 0x10       ; Execute BIOS interrupt 0x10 - Video services
+    jmp .loop      ; Jump back to the start of the loop
 halt:
-    cli ; 清除中斷標誌
-    hlt ; 停止執行
-hello: db "Hello world!", 0
+    cli            ; Clear interrupt flag
+    hlt            ; Halt the CPU
+hello: db "Hello world!", 0  ; Define a null-terminated string "Hello world!"
 
-times 510 - ($ - $$) db 0 ; 填充剩下的510位元組為零
-dw 0xaa55 ; 魔法引導載入器標記 - 標記這個512位元組扇區為可引導
+times 510 - ($ - $$) db 0  ; Fill the remaining bytes to make the total size 510 bytes with zeros
+dw 0xaa55         ; Bootloader signature - marks this 512-byte sector as bootable
 
 ```
 
+### Code Explanation
 
-### 3. 編譯和運行程式
+- `bits 16`: Specifies that the code is 16-bit, as the CPU starts in 16-bit real mode at boot.
+- `org 0x7c00`: Sets the origin to 0x7C00, the memory address where the BIOS loads the bootloader.
+- `boot:`: The starting point of the program.
+- `mov si, hello`: Points the `si` register to the `hello` label, where the string "Hello world!" is stored.
+- `mov ah, 0x0e`: Sets the `ah` register to 0x0e, a BIOS interrupt function for writing a character to the screen.
+- `.loop:`: The main loop of the program.
+- `lodsb`: Loads the byte at `ds:si` into the `al` register and increments `si`.
+- `or al, al`: Checks if `al` is 0. If `al` is 0, it jumps to the `halt` label.
+- `jz halt`: Jumps to the `halt` label if `al` is 0.
+- `int 0x10`: Calls BIOS interrupt 0x10 to print the character in `al` to the screen.
+- `jmp .loop`: Jumps back to the start of the loop to print the next character.
+- `halt:`: The end of the program.
+- `cli`: Clears the interrupt flag, disabling hardware interrupts.
+- `hlt`: Halts the CPU, putting it to sleep and indicating the end of the program.
+- `hello: db "Hello world!", 0`: Defines the string "Hello world!" followed by a null character (0).
+- `times 510 - ($ - $$) db 0`: Fills the remaining space in the 512-byte sector with zeros. `$` represents the current address, and `$$` represents the start address. `db 0` fills the space with zeros.
+- `dw 0xaa55`: Adds the boot signature (0xAA55) to the end of the 512-byte sector, marking it as bootable.
 
-### 將程式碼保存為 `hello.asm`
+### 3. Compile and Run the Program
 
-### 使用NASM編譯程式碼
+### Save the Code as `hello.asm`
+
+### Compile the Code Using NASM
 
 ```bash
-
 nasm -f bin hello.asm -o hello.bin
 
 ```
 
-解釋：這個指令使用NASM將組合語言程式碼編譯成二進位文件。
+Explanation: This command uses NASM to compile the assembly code into a binary file.
 
-### 檢查生成的二進位文件
+### Verify the Generated Binary File
 
 ```bash
-
 hexdump hello.bin
 
 ```
 
-你應該會看到類似這樣的輸出：
+You should see output similar to this:
 
 ```r
-
 0000000 be 10 7c b4 0e ac 08 c0 74 04 cd 10 eb f7 fa f4
 0000010 48 65 6c 6c 6f 20 77 6f 72 6c 64 21 00 00 00 00
 0000020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
@@ -88,35 +101,109 @@ hexdump hello.bin
 
 ```
 
-### 使用QEMU運行二進位文件
+### Run the Binary File Using QEMU
 
 ```bash
-
 qemu-system-x86_64 -fda hello.bin
 
 ```
 
-在Windows 10上，如果使用WSL，你可能需要在前面加上`DISPLAY=:0`來打開視窗：
+On Windows 10, if using WSL, you might need to prefix with `DISPLAY=:0` to open the window:
 
 ```bash
-
-DISPLAY=:0 qemu-system-x86_64 -fda boot1.bin
-
-```
-
-你應該會看到類似這樣的畫面：
+DISPLAY=:0 qemu-system-x86_64 -fda hello.bin
 
 ```
 
+You should see output similar to this:
+
+```
 Hello world!
 
 ```
 
-這就是一個基本的引導載入器，它顯示"Hello world!"在螢幕上。
+This is a basic bootloader that displays "Hello world!" on the screen.
 
-### 總結
+### Summary
 
-1. 安裝NASM組譯器和QEMU虛擬機器。
-2. 撰寫並保存組合語言程式碼到文件`hello.asm`。
-3. 使用NASM編譯組合語言程式碼為二進位文件`hello.bin`。
-4. 使用QEMU運行二進位文件，看到"Hello world!"顯示在螢幕上。
+1. Install NASM assembler and QEMU emulator.
+2. Write and save assembly code to a file (`hello.asm`).
+3. Compile the assembly code into a binary file (`hello.bin`) using NASM.
+4. Run the binary file using QEMU to see "Hello world!" displayed on the screen.
+
+### If You Encounter the Following Error
+
+```
+Temporary failure resolving 'archive.ubuntu.com'
+E: Failed to fetch <http://archive.ubuntu.com/ubuntu/pool/universe/n/nasm/nasm_2.15.05-1_amd64.deb>  Temporary failure resolving 'archive.ubuntu.com'
+
+```
+
+- Ensure `dpkg` is installed. Most Unix systems come with this tool pre-installed. If not, install it using a package manager:
+    
+    ```bash
+    sudo apt-get install dpkg
+    
+    ```
+    
+- Extract the `.deb` file using `dpkg-deb` command:
+    
+    ```bash
+    dpkg-deb -x nasm_2.15.05-1_amd64.deb extraction_directory
+    
+    ```
+    
+
+### 1. Extract the `.deb` File
+
+First, you have extracted the contents:
+
+```bash
+dpkg-deb -x nasm_2.15.05-1_amd64.deb extraction_directory
+
+```
+
+This extracts the contents of the `.deb` file into the `extraction_directory`.
+
+### 2. View the Extracted Directory Structure
+
+Navigate into the extracted directory and view the files and directory structure:
+
+```bash
+cd extraction_directory
+ls -R
+
+```
+
+### 3. Manually Install the Application
+
+Typically, executable files are located in `usr/bin` or `usr/local/bin`, and libraries in `usr/lib`. You can manually copy these files to the corresponding directories in your system.
+
+For example, if the extracted `nasm` executable is in `usr/bin`, you can copy it to the system's `/usr/local/bin` directory:
+
+```bash
+sudo cp -r usr/bin/* /usr/local/bin/
+
+```
+
+### 4. Update Environment Variables (If Needed)
+
+If the manually installed application is not in the default system path, update the environment variables. For example, add `/usr/local/bin` to the `PATH`:
+
+```bash
+export PATH=/usr/local/bin:$PATH
+
+```
+
+Add this line to your `~/.bashrc` or `~/.profile` file to set it automatically each time you start a terminal.
+
+### 5. Verify the Installation
+
+Finally, verify the application installation:
+
+```bash
+nasm -v
+
+```
+
+This should display the `nasm` version information, indicating it is successfully installed and ready to use.

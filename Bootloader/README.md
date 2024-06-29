@@ -1,12 +1,14 @@
-### Bootloader 的角色
+### The Role of a Bootloader
 
-Bootloader 是作業系統啟動過程中的關鍵角色。其主要職責是將作業系統從非揮發性儲存設備（如硬碟、SSD、光碟等）加載到記憶體中，並將控制權交作業系統的核心。以下是 bootloader 的主要角色和功能：
+The bootloader plays a crucial role in the operating system's startup process. Its main responsibility is to load the operating system from non-volatile storage devices (like hard drives, SSDs, CDs, etc.) into memory and hand over control to the operating system's kernel. Here are the primary roles and functions of a bootloader:
 
-1. **初始化硬體**：
-    - Bootloader 通常負責對系統的一些基本硬體進行初始化，如 CPU、記憶體等。不同的硬體平台可能需要不同的初始化過程。
-2. **加載核心**：
-    - Bootloader 的核心功能是將作業系統核心加載到記憶體中。它從儲存設備讀取核心映像檔，並將其放置在記憶體的適當位置。
-3. **提供啟動選項**：
-    - 一些高級 bootloader（如 GRUB）允許使用者在啟動時選擇不同的核心或作業系統。這對於多重引導系統非常重要。
-4. **轉交控制權**：
-    - 在成功加載核心後，bootloader 將控制權交給作業系統核心，讓核心接管系統的控制。
+1. **Initializing Hardware**:
+    - The bootloader is typically responsible for initializing basic hardware components such as the CPU and memory. Different hardware platforms might require different initialization processes.
+2. **Loading the Kernel**:
+    - The core function of the bootloader is to load the operating system kernel into memory. It reads the kernel image from the storage device and places it in the appropriate memory location.
+3. **Providing Boot Options**:
+    - Some advanced bootloaders (like GRUB) allow users to choose different kernels or operating systems at startup. This is especially important for multi-boot systems.
+4. **Handing Over Control**:
+    - After successfully loading the kernel, the bootloader hands control over to the operating system kernel, allowing the kernel to take over the system.
+
+In essence, the bootloader acts as the bridge between the hardware and the operating system, ensuring that the system boots up correctly and efficiently.
