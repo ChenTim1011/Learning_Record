@@ -360,3 +360,110 @@ We've explored why you should always be honest about hooks dependencies and meth
 
 This linter rule is built into Create React App, so if you create your project with it, you should be able to use it in supported editors. You can also install it separately if needed.
 
+### Common Misuses of Dependencies
+
+In previous in-depth discussions on `useEffect`, we have repeatedly emphasized the concept: `useEffect` is for synchronizing data with effects outside React elements, not for lifecycle management. The dependencies of `useEffect` are a performance optimization, intended to skip unnecessary executions, not to control when effects happen based on the component lifecycle or business logic.
+
+More importantly, dependencies as a performance optimization do not guarantee logical execution control. Effects can re-execute at unexpected times, which we'll discuss in more detail.
+
+You might think that setting the dependencies to `[]` means the effect will never re-execute:
+
+```jsx
+import { useEffect, useState } from "react";
+ 
+function App() {
+  const [count, setCount] = useState(0);
+ 
+  useEffect(() => {
+    console.log('effect start'); 
+    setCount((prevCount) => prevCount + 1);
+  }, []); // This effect may run twice in React 18
+ 
+  return <div>{count}</div>;
+}
+```
+
+In fact, this effect may execute twice on mount in React 18, which you can try in this CodeSandbox.
+
+This change is a breaking change in React 18 but only happens in Strict mode and the dev version of React. You might wonder why this change was introduced; it is a preemptive check for upcoming React versions. We'll delve into these details in the next section.
+
+React documentation also mentions that hooks' dependencies are a performance optimization, not a logical guarantee. Future versions of React might "forget" the previous values of dependencies to free memory. If your effect uses dependencies for anything other than optimization, it might re-execute unexpectedly, leading to bugs.
+
+So, the takeaway here is: being honest about dependencies isn't just a best practice—it's to ensure your effect's reliability. Going against this principle may break your effects in future React versions, causing unintended behaviors in your application.
+
+### Misuse #1: Mimicking ComponentDidMount in Function Components
+
+You shouldn't use `useEffect` with dishonest dependencies to mimic lifecycle methods like `componentDidMount`. Function components and hooks don't offer lifecycle methods directly. With the design of data flow and effect synchronization, you can meet most business logic needs without relying on lifecycle methods.
+
+Instead of thinking about "executing specific actions at specific times," think about "synchronizing data to effects, ensuring correctness even with repeated synchronizations."
+
+However, if you really need an effect to execute only once during the component's lifecycle, you can use a simple flag with `useRef`:
+
+```jsx
+import { useEffect, useState, useRef } from "react";
+ 
+export default function App() {
+  const [count, setCount] = useState(0);
+  const isEffectCalledRef = useRef(false);
+ 
+  useEffect(() => {
+    if (!isEffectCalledRef.current) {
+      isEffectCalledRef.current = true;
+      console.log('effect start'); 
+      setCount((prevCount) => prevCount + 1);
+    }
+  }, []);
+ 
+  return <div>{count}</div>;
+}
+```
+
+With the flag implemented using `useRef`, the business logic within the effect will only execute once.
+
+`useRef` can store values across renders that don't affect the UI, such as the flag `isEffectCalledRef` here. Initially set to `false`, it prevents the business logic from running multiple times by flipping to `true` after the first execution.
+
+### Misuse #2: Using Dependencies to Control Effect Execution
+
+Another common misuse is trying to control effect execution with dependencies. For example, if you want to increment `count` whenever `todos` change:
+
+```jsx
+function App() {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState([]);
+ 
+  useEffect(() => {
+    setCount(prevCount => prevCount + 1);
+  }, [todos]); // Dishonest dependency, pretending to depend on todos
+  // ...
+}
+```
+
+Here, we're dishonestly pretending the effect depends on `todos`, aiming to control execution based on `todos` changes. This isn't reliable! Future React versions might forget the previous `todos` for performance reasons, causing the effect to run unexpectedly.
+
+When your effect requires business logic conditions, write those conditions yourself, rather than relying on dependencies:
+
+```jsx
+function App() {
+  const [count, setCount] = useState(0);
+  const [todos, setTodos] = useState([]);
+  const prevTodosRef = useRef();
+
+  useEffect(() => {
+    if (prevTodosRef.current !== todos) {
+      setCount(prevCount => prevCount + 1);
+    }
+  }, [todos]); // Honest dependencies
+
+  useEffect(() => {
+    // After rendering and other effects are done, store the current todos
+    prevTodosRef.current = todos;
+  }, [todos]);
+ 
+  // ...
+}
+```
+
+Using `useRef`, we remember the previous render's value, allowing us to write genuine conditional logic inside the effect, rather than misusing dependencies to track data changes.
+
+By following these guidelines, you'll avoid common pitfalls and ensure your effects are reliable and performant.
+
