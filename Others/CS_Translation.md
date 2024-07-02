@@ -47,3 +47,64 @@
 | GPU           | 圖形處理單元 | 顯示卡       | 根據用途選擇翻譯，避免不具顯示功能的誤解           |
 
 #### 整理一下我常用錯的翻譯
+
+以下是台灣常見翻譯與中國大陸翻譯的對照表：
+
+| 英文詞彙         | 台灣常見翻譯       | 中國大陸翻譯 |
+| ---------------- | ------------------ | ------------ |
+| Access           | 存取               | 访问         |
+| Address (n.)     | 位址               | 地址         |
+| Address (v.)     | 定址               | 寻址         |
+| Algorithm        | 演算法             | 算法         |
+| Atomic operation | 最小操作           | 原子操作     |
+| Audio            | 音訊               | 音频         |
+| Binding          | 繫結               | 绑定         |
+| Bitmap           | 點陣圖             | 位图         |
+| Build System     | 建置系統           | 构建系统     |
+| Call             | 呼叫               | 调用         |
+| Character        | 字元               | 字符         |
+| Client           | 用戶端             | 客户端       |
+| Concurrent       | 並行               | 并发         |
+| Compatibility    | 相容性             | 兼容性       |
+| Command Line     | 命令列             | 命令行       |
+| Core dump        | 記憶體傾印         | 内核转储     |
+| Configuration    | 組態               | 配置         |
+| Configure        | 組態               | 配置         |
+| Cursor           | 游標               | 光标         |
+| Disk             | 磁碟               | 磁盘         |
+| Document         | 文件               | 文档         |
+| Enum             | 列舉               | 枚举         |
+| Font             | 字型               | 字体         |
+| Handle           | 控制代碼           | 句柄         |
+| Heap             | 堆積               | 堆           |
+| Header file      | 標頭檔             | 头文件       |
+| Implement        | 實作               | 实现         |
+| Implementation   | 實作               | 实现         |
+| Information      | 資訊               | 信息         |
+| Integrate        | 整合               | 集成         |
+| Interface        | 介面               | 界面/接口    |
+| Kit              | 套件               | 工具包       |
+| Macro            | 巨集               | 宏           |
+| Memory           | 記憶體             | 内存         |
+| RAM              | 主（要）記憶體     | 内存         |
+| Message          | 訊息               | 消息         |
+| Module           | 模組               | 模块         |
+| Network          | 網路               | 网络         |
+| Network adapter  | 網路介面卡         | 网络适配器   |
+| Optimize         | 最佳化             | 优化         |
+| Partition (disk) | 分割區             | 分区         |
+| Port             | 連接埠/通訊埠      | 端口         |
+| Postfix          | 尾碼               | 后缀         |
+| Prefix           | 前置（詞、字、碼） | 前缀         |
+| Program          | 程式               | 程序         |
+| Queue            | 佇列               | 队列         |
+| Refresh          | 重新整理           | 刷新         |
+| Render           | 呈現/算繪          | 渲染         |
+| Register (n.)    | 暫存器             | 寄存器       |
+| Register (v.)    | 註冊               | 注册         |
+| Run              | 執行               | 运行         |
+| Serial Port      | 序列埠             | 串行端口     |
+| Server           | 伺服器             | 服务器       |
+| Source Code      | 來源碼/原始碼      | 源代码       |
+| Thread           | 執行緒             | 线程         |
+| Volume (disk)    | 磁碟區/卷宗        | 卷/宗卷      |
