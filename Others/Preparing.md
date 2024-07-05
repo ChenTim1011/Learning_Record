@@ -83,7 +83,7 @@
 #### 我有興趣的領域
 
     領域=>只有資工系才能做的=> 比較沒有興趣的領域 AI、資安、電腦科學理論
-
+    =>如果要AI想要和硬體做結合。
     用作業等作品來輔助描述自己的程式能力
 
     研究未來工作領域=>Github 技能樹 ⇒ 想研究所有沒有相關領域
@@ -106,7 +106,36 @@
 - 電子郵件: [ktw@csie.ntu.edu.tw](mailto:ktw@csie.ntu.edu.tw)
 - 研究專長:  嵌入式系統、即時系統、神經元計算、快閃記憶體系統、作業系統、儲存系統
 
-交大資工所:
+- 職稱:  教授
+- 姓名: [施吉昇 (CS Shih)](https://www.csie.ntu.edu.tw/zh_tw/member/Faculty/%E6%96%BD%E5%90%89%E6%98%87-CS-Shih-70044877)
+- 電子郵件: [cshih@csie.ntu.edu.tw](mailto:cshih@csie.ntu.edu.tw)
+- 研究專長:  即時系統、排程理論、資源管理、嵌入式系統
+- 個人網站: http://www.csie.ntu.edu.tw/~cshih/
+- 系分機: 523
+
+交大資工所:-
+
+直接被吳凱強教授的話感動到
+這個大 AI 時代，台灣在既有的 IC 設計與製造的強大優勢之外，一個值得大力發展的 CS 領域，而且是一個人才不易被取代的 CS 領域。
+
+[主要研究領域]
+
+1. AI for IC/SOC Design, Automation and Test (DAT)
+   - 用 AI 輔助 IC/SOC 設計與設計自動化
+   - 用 AI 輔助 IC/SOC 測試與可靠度優化
+2. DAT for AI
+   - D (Design) for AI: AI 加速器及其架構設計
+   - A (Automation) for AI: AI 模型自動化優化技術，包括模型壓縮、量化、微調以及模型佈署之加速，
+
+- T (Test) for AI: AI 加速器之測試與容錯
+
+吳凱強 **副教授**
+
+美國卡內基美隆大學資訊工程博士
+
+AI 運算平台設計、近似計算於 AI 之應用、安全與硬體特洛伊、SoC 設計自動化
+
+[陽明交大資工系 吳凱強 邊緣實驗室(原 CAD 實驗室) 誠徵博士生  -  研究所 forum | Dcard](https://www.dcard.tw/f/graduate_school/p/255156522)
 
 #### 推薦信
 
