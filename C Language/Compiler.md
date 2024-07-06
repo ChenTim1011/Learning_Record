@@ -158,3 +158,167 @@ These shorthands make regular expressions more concise and manageable without al
 
 - **Multiple Transitions**: NFAs may have multiple transitions for the same input character from a state, requiring backtracking or simultaneous path exploration.
 - **Efficiency**: NFAs are not efficient for recognition due to the need to explore multiple paths. They serve as an intermediate step before converting to DFAs.
+
+### 2.4 Converting a Regular Expression to an NFA
+
+#### Approach
+
+- Construct an NFA compositionally from a regular expression.
+- Build NFA fragments from subexpressions and combine them to form the full NFA.
+- An NFA fragment includes states, transitions, an incoming half-transition, and an outgoing half-transition.
+
+#### Construction of NFA Fragments
+
+- **Incoming half-transition**: Not labeled by a symbol.
+- **Outgoing half-transition**: Labeled by either ε or an alphabet symbol.
+- **Combination**: Fragments are combined using the half-transitions to form larger fragments and eventually the complete NFA.
+
+#### NFA Fragments for Basic Regular Expressions (Figure 2.4)
+
+- **Single Character `a`**:
+  ```
+  a ✲✚✙✛✘a
+  ```
+- **Empty String `ε`**:
+  ```
+  ε ✲✚✙✛✘ε
+  ```
+- **Concatenation `st`**:
+  ```
+  s t ✲ s ✲ t
+  ```
+- **Union `s|t`**:
+  ```
+  ✲✚✙✛✘✲ ε
+  ε ✲
+  s
+  t
+  ✚✙❫✛✘
+  ✣
+  ε
+  ```
+- **Kleene Star `s*`**:
+  ```
+  s ✲✚✙✛✘ε
+  ✲
+  ε
+  ✠
+  s
+  ```
+
+#### Complete NFA Example
+
+- Regular Expression: `(a|b)*ac`
+- **NFA**: (Figure 2.5)
+  ```
+  ✲✖✕✗✔1
+  ε ✲
+  ✲
+  ε
+  ✖✕✗✔2
+  a✲✖✕✗✔3
+  c✲✖✕✗✔✒✑✓✏4
+  ✖✕✗✔5
+  ε ✲
+  ε ✲
+  ✖✕✗✔6
+  ❘
+  a
+  ✖✕✗✔7
+  ✒
+  b
+  ✖✕✗✔8
+  ✰
+  ε
+  ```
+
+#### Optimizations (Figure 2.6)
+
+- **Shorthands for Regular Expressions**:
+
+  - `ε`
+  - `[0-9]`
+    ```
+    ✲✚✙✛✘❘
+    0
+    ✒
+    9
+    ...
+    ✚✙✛✘ε
+    ```
+  - `s+`
+    ```
+    ✲✚✙✛✘
+    ✲
+    ε
+    ✚✙✛ ε ✛✘ε
+    ☛
+    s
+    ```
+
+- **Optimized NFA Example**:
+  - Regular Expression: `[0-9]+`
+  - **NFA**: (Figure 2.7)
+    ```
+    ✲✚✙ε✛✘
+    ✚✙✛ ε ✛✘ε
+    ✲✚✙✛✘
+    ✒✑✠✓✏
+    ✲✚✙✛✘❘
+    0
+    ✒
+    9
+    ...
+    ✚✙✛✘
+    ε
+    ```
+
+### 2.5 Deterministic Finite Automata (DFA)
+
+#### Introduction
+
+- **Purpose**: DFAs are NFAs with additional restrictions to make them closer to actual machine operations.
+- **Restrictions**:
+  - No epsilon transitions.
+  - No multiple transitions with the same symbol from a state.
+
+#### Characteristics
+
+- **Deterministic**: The state and the next input symbol uniquely determine the transition.
+- **Implementation**: Easy to implement using a two-dimensional table for state transitions and a one-dimensional table for accepting states.
+
+#### Example DFA
+
+- Equivalent to the NFA in Figure 2.3:
+  ```
+  ✲✚✙✛✘1
+  b✲
+  ✻a
+  ✚✙✛✘
+  ✒✑✓✏3
+  ✚✙✛✘2
+  ✸
+  a
+  ❄
+  b
+  ```
+
+### 2.6 Converting an NFA to a DFA
+
+#### Approach
+
+- Simulate all possible paths in an NFA at once by operating with sets of NFA states.
+- **Sets of NFA States**: A set of NFA states becomes a single DFA state.
+
+#### Handling Epsilon Transitions
+
+- **Epsilon-closure**: Extend the set of NFA states with those reachable by epsilon transitions.
+- **Definition (2.2)**:
+  ```
+  ε-closure(M) = M ∪ {t | s ∈ ε-closure(M) and sε t ∈ T}
+  ```
+
+#### Conversion Process
+
+- For each possible input symbol, form new sets of NFA states by following transitions labeled by the symbol.
+- The DFA transitions become deterministic by moving between sets of NFA states based on input symbols.
