@@ -60,3 +60,101 @@ The first three phases (lexical analysis, syntax analysis, type checking) are ca
 - **Associative and Commutative Properties**:
   - `|` is associative and commutative (like set union).
   - Concatenation is associative but not commutative and distributes over `|`.
+
+### 2.2.1 Shorthands
+
+#### Introduction
+
+While the constructions in Figure 2.1 suffice for describing number strings and variable names, using extra shorthands can simplify the expressions. For example, describing non-negative integer constants with regular expressions can be verbose.
+
+#### Shorthands for Regular Expressions
+
+- **Bracket Notation**:
+  - Example: `[ab01]` is shorthand for `a|b|0|1`.
+  - Interval Notation: `[0-9]` for digits from 0 to 9; `[a-zA-Z]` for all alphabetic letters.
+- **Usage of Intervals**:
+  - Use standard ASCII or ISO 8859-1 character sets for clear symbol ordering.
+  - Avoid ambiguous intervals like `[0-z]`.
+
+#### Examples of Shorthand Usage
+
+- **Integer Constants**: `[0-9][0-9]*` becomes `[0-9]+`.
+- **Optional Elements**: `s?` represents `s|ε`.
+
+These shorthands make regular expressions more concise and manageable without altering the sets of languages they describe.
+
+#### Algebraic Properties of Regular Expressions (Figure 2.2)
+
+- Associative and commutative properties of `|`.
+- Associative property of concatenation.
+- Idempotent properties of `|` and `*`.
+- Definitions of shorthands such as `s+` and `s?`.
+
+### 2.2.2 Examples
+
+#### Describing Programming Language Elements with Regular Expressions
+
+- **Keywords**: Regular expression for `if` is simply `if`.
+- **Variable Names**:
+  - In C: `[a-zA-Z_][a-zA-Z_0-9]*`.
+- **Integers**:
+  - Non-empty sequence of digits, optionally preceded by a sign: `[+-]?[0-9]+`.
+- **Floats**:
+  - Complex format involving optional signs, digits, decimal points, and exponents.
+  - Simplified version (if integers are also included): `[+-]?(([0-9]+(.[0-9]*)?|.[0-9]+)([eE][+-]?[0-9]+)?)`.
+- **String Constants**:
+  - Starts and ends with quotation marks, includes alphanumeric characters and escape sequences: `"([a-zA-Z0-9]|\\[a-zA-Z])*"`.
+
+### 2.3 Nondeterministic Finite Automata (NFA)
+
+#### Introduction
+
+- **Purpose**: Transform regular expressions into efficient programs using nondeterministic finite automata (NFA). NFAs are then converted into deterministic finite automata (DFA) for efficient execution.
+- **Definition**: A finite automaton is a machine with a finite number of states and transitions. Transitions can be labeled with input characters or ε (epsilon transitions).
+
+#### Key Concepts
+
+- **States and Transitions**:
+  - **States**: Represent the condition or situation of the automaton at any given moment.
+  - **Transitions**: Movements between states triggered by input characters or ε transitions.
+- **Acceptance**: An input string is accepted if, after processing all characters, the automaton reaches an accepting state.
+
+#### Nondeterministic Nature
+
+- **Multiple Choices**: At each step, the automaton can:
+  - Follow an epsilon transition.
+  - Read a character and follow a corresponding transition.
+- **Path to Acceptance**: A string is in the language if there exists at least one sequence of choices leading to an accepting state.
+
+#### Formal Definition (Definition 2.1)
+
+- **Components**:
+  - **S**: Set of states.
+  - **s0**: Starting state.
+  - **F**: Subset of states that are accepting states.
+  - **T**: Set of transitions labeled with symbols from the alphabet Σ or ε.
+- **Transition Notation**: A transition from state s1 to s2 on symbol c is written as sc t.
+
+#### Graphical Representation
+
+- **States**: Represented by circles (double circles for accepting states).
+- **Initial State**: Marked by an arrow pointing to it from outside the automaton.
+- **Transitions**: Represented by arrows between states, labeled with symbols or ε.
+
+#### Example NFA (Figure 2.3)
+
+- **Structure**:
+  - States: 1 (starting), 2, 3 (accepting).
+  - Transitions: ε from 1 to 2, 'a' from 2 to 1 and 3, 'b' from 1 to 3.
+- **Language**: Recognizes the language described by the regular expression `a*(a|b)`.
+- **Example String**: The string "aab" is accepted by the sequence of transitions:
+  1. 1 to 2 (ε)
+  2. 2 to 1 (a)
+  3. 1 to 2 (ε)
+  4. 2 to 1 (a)
+  5. 1 to 3 (b)
+
+#### Challenges of NFA
+
+- **Multiple Transitions**: NFAs may have multiple transitions for the same input character from a state, requiring backtracking or simultaneous path exploration.
+- **Efficiency**: NFAs are not efficient for recognition due to the need to explore multiple paths. They serve as an intermediate step before converting to DFAs.
