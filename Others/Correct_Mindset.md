@@ -2,7 +2,7 @@
 
         https://hackmd.io/@sysprog/linux2024-assessment
 
-### 我陳睿廷想要矯正我的錯誤心態
+### 我想要矯正我的錯誤心態
 
 ## 自我評量改善重點
 
