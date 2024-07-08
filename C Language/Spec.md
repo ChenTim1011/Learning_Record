@@ -1,0 +1,97 @@
+https://hackmd.io/@sysprog/c-standards?type=view
+
+**David Brailsford's Interview:**
+
+- **Early Mainframe Era:**
+
+  - Machines did not use byte addressing.
+  - High-level programming languages and computer hardware could not directly correspond.
+
+- **C Language:**
+
+  - C language filled the need for system-level programming.
+  - Its development was pivotal in the evolution of computer systems.
+
+- **UNIX Operating System:**
+  - The influence of UNIX further transformed the information world we live in today.
+
+**Importance of Software Licensing:**
+
+- **Legal Document:**
+
+  - Manages the use and redistribution of software.
+  - Essential for both developers and users to understand.
+
+- **GitHub Example:**
+
+  - Open source projects without a public license default to "All rights reserved."
+  - Unauthorized modifications or redistributions can lead to copyright issues.
+
+- **Open Source Initiative (OSI):**
+  - Emphasizes that open-source projects must have corresponding licenses.
+  - Prevents public confusion and legal ambiguities regarding software use.
+
+**Why Understand Software Licensing?**
+
+1. **Legal Issues:**
+
+   - Necessary for commercializing open-source projects.
+   - Avoiding copyright law violations.
+
+2. **Financial Impact:**
+
+   - Legal battles can be time-consuming and costly.
+   - Important for individual developers and startups.
+
+3. **Protecting Rights:**
+   - Ensures your work is not misused.
+   - Provides clarity on usage and modification rights.
+
+**Differences Between Copyleft, Copycenter, and Copyright:**
+
+- **Copyleft:**
+
+  - Promotes free usage and modification.
+  - Derivative works must use the same license (e.g., GNU GPL, LGPL).
+
+- **Copycenter:**
+
+  - Middle ground between copyleft and copyright.
+  - Allows more flexible licensing for derivative works (e.g., BSD, MIT, Apache).
+
+- **Copyright:**
+  - Traditional intellectual property rights.
+  - Restricts free use and modification.
+
+**Examples of Licenses:**
+
+- **GNU GPL:**
+
+  - Strong copyleft license.
+  - Derivative works must also use the GPL.
+
+- **LGPL:**
+
+  - Lesser General Public License.
+  - More permissive than GPL regarding linking.
+
+- **BSD License:**
+
+  - Requires acknowledgment of original authors.
+  - Allows proprietary use.
+
+- **MIT License:**
+
+  - Highly permissive.
+  - Allows almost unrestricted use and modification.
+
+- **Apache License:**
+  - Requires documenting modifications.
+  - Similar flexibility to MIT.
+
+**The First C Language Compiler:**
+
+- **Bootstrapping Process:**
+  - Initial compiler written in assembly language for a subset of C (C0).
+  - Successive compilers developed using progressively more complex subsets (C1, C2, ... CN).
+  - Eventually leads to a full C language compiler.
