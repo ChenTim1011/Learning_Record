@@ -95,3 +95,35 @@ https://hackmd.io/@sysprog/c-standards?type=view
   - Initial compiler written in assembly language for a subset of C (C0).
   - Successive compilers developed using progressively more complex subsets (C1, C2, ... CN).
   - Eventually leads to a full C language compiler.
+
+Life Philosophy:
+
+Everything should be categorized into work, learning, or life.
+Dr. Bing-Zhe Yeh's Tweet:
+
+Tracing ability is crucial to avoid being misled by seemingly innovative but actually repackaged or borrowed cross-disciplinary "new ideas."
+Specification Document Search Results:
+
+"Object" appears 735 times.
+"Pointer" appears 637 times.
+Observation: Many educational materials often focus on pointers rather than objects, despite their interconnectedness.
+Objects vs. Object-Oriented:
+
+Objects: Focus on data representation.
+Object-Oriented: Concept that "everything is an object."
+C11 Standard (ISO/IEC 9899:201x):
+
+Importance of learning from primary sources.
+Software developers should refer to language specifications to understand definitions and standards.
+Address Operator (&):
+
+Do not always read as "and."
+In pointer operations, read as "address of."
+C99 Standard References:
+
+[6.5.3.2] Address and Indirection Operators: Discusses the '&' address-of operator.
+[3.14] Object: Defines an object as a region of data storage in the execution environment, capable of representing values.
+Lvalue vs. Rvalue:
+
+Lvalue (Locator Value): Refers to an object that occupies some identifiable location in memory.
+Rvalue (Read Value): Refers to data value that is stored at some address in memory.
