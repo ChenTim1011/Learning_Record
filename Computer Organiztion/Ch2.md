@@ -1,7 +1,18 @@
 
 Instructions: Language of the Computer 60
+
 2.1 Introduction 62
+
+命令電腦硬體的語言是instruction
+這一章介紹MIPS的組合語言，學習如何表示指令，學習電腦如何儲存程式設計概念，練習寫電腦的語言，看到程式語言和編譯器最佳化對於速度的影響
+
+
 2.2 Operations of the Computer Hardware 63
+
+
+
+
+
 2.3 Operands of the Computer Hardware 66
 2.4 Signed and Unsigned Numbers 73
 2.5 Representing Instructions in the Computer 80
