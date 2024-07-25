@@ -133,10 +133,38 @@ clock rate 事實上可能會因為節能或是需要比較到功能會隨狀況
 
 1.7 The Power Wall 
 
+clockrate 和 power 在2000年前明顯上升，但2000年後clockrate就卡住了
+
+因為現實狀況是要考量power的散熱限制，必須要考慮Power wall limit 
+
+我們主要使用的積體電路是 CMOS ， 它的能量消費方式是 dynamic energy . 
+例如當 電晶體從 0 -> 1 -> 0  或是 1 -> 0 -> 1  會消費能量 ， 
+dynamic energy 它依靠 每一個電晶體的 capacitive load 和 voltage
+所以 => Energy 正相關 Capacitive load x (voltage)^2
+
+如果考量單一的 transition 的話 還需要 1/2 ， 然後 power 還需要每個電晶體 transition 的頻率
+所以 => Power 正相關 1/2 x Capacitive load x (voltage)^2 x frequency switched
+
+影響的部分
+frequency switched => clock rate
+Capacitive load => fanout 有多少數量的電晶體連接到輸出的部分
+Technoly => 電晶體和線的 capacitance(電容)
+
+目前遇到的瓶頸是，如果電壓下降太多 或讓電晶體leaky(像是水龍頭沒辦法把水關起來，水會一直漏出來)
+=>散熱方法:在晶片的周圍加裝散熱裝置來散熱
+
+即使當電晶體是關閉， Static energy consumption 也會有leakage current flow 的問題
+當電晶體數量增加，會增加power dissipation. 難以避免所以也要把energy leakage 考量進去。
+
+Power 在 積體電路中有兩個挑戰
+1: 放在晶片的周圍，但現代化的晶片晶片周圍線路複雜，且有多層晶片連結
+2: 能量消失以熱能的形式釋放在裡面，熱能影響晶片工作效率必須要排出來。
 
 
 
 1.8 The Sea Change: The Switch from Uniprocessors to Multiprocessors 
+
+
 
 1.9 Real Stuff : Benchmarking the Intel Core i7 
 
