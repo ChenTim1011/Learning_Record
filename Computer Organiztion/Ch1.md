@@ -164,6 +164,40 @@ Power 在 積體電路中有兩個挑戰
 
 1.8 The Sea Change: The Switch from Uniprocessors to Multiprocessors 
 
+因為power limit，讓微處理器的設計有重大的改變
+
+每個晶片的 multiple processor 的 microprocessor => 更多的 throughput
+processor -> core
+micro processor -> multicore microprocessor
+
+平行化對於電腦效能提升很重要，程式設計師也必須重新寫程式來讓程式能夠利用multiple processors
+第四章會提到pipeling 利用重疊的執行指令 -> instruction level parall
+
+但要寫出平行化程式會遇到一些挑戰=>如果你對效能有要求再來
+1:平行化程式是由performance programming 來定義
+2:除了程式要正確，還要提供其他給使用者或其程式用的介面
+3:程式設計師必須把應用程式拆開，讓每一個處理器大概有相同的量去做=>但這樣會導致 overhead of scheduling
+所以必須彼此協調才不會浪費平行化的好處
+
+總而言之平行化會遇到的困難有
+1: Scheduling 2: Load balancing 3: time for synchronization 4: overhead for communication between the parties.
+
+第二章 介紹多核處理器如何使用指令來同步任務。
+
+第三章  兩個向量相乘， 使用 subword parallelism 利用摩爾定裡去提供 wider arithmetic unit 可以同時執行許多運算元。
+
+第四章 pipelining 使用像是同時抓取和執行多個指令，然後猜測結果可能是這樣來提前做選擇。 ( 使用八大設計中 pipelining + prediction )
+
+第五章在記憶體層級中會提到 =>要降低 communication 的成本 可以讓 processor 使用相同的位址
+但是因為 cache ，好處是可以先保有暫時複製的資料，可以讓 processor 處理速度快一點， 但問題是
+每一個 processor cache的資料可能不同，在平行化的時候會有困難， 第五章會介紹如何處理這問題的機制
+
+介紹 RAID 能夠有效提高 throughput 和 dependability ， 介紹不同 level 的 RAID 的 Performance, cost, and dependability
+
+
+
+
+
 
 
 1.9 Real Stuff : Benchmarking the Intel Core i7 
