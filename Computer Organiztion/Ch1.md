@@ -196,8 +196,9 @@ micro processor -> multicore microprocessor
 
 
 
+第三到六章 使用矩陣乘法的範例，來看平行化是如何來加快速度
 
-
+附錄C 介紹 GPU， GPU依靠平行化，介紹 NVIDIA GPU的重點和GPU的程式設計環境
 
 
 1.9 Real Stuff : Benchmarking the Intel Core i7 
