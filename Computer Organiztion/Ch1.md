@@ -203,6 +203,15 @@ micro processor -> multicore microprocessor
 
 1.9 Real Stuff : Benchmarking the Intel Core i7 
 
+如何評估電腦的性能部分,測program執行的速度,但是更好方法是測量 SPEC CPU benchmark
+
+benchmark 選擇用來測量電腦的性能的程式
+workload 執行一組程式可能包含應用程式的集合或是真實程式的混合
+
+
+
+
+
 1.10 Fallacies and Pitfalls 
 
 1.11 Concluding Remarks 
