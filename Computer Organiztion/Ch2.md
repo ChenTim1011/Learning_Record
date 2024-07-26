@@ -36,7 +36,22 @@ MIPS表達指令的格式
 例如 $s0 系列表示像是C語言的變數
 $t0 系列 暫時的暫存器需要被編譯到MIPS指令
 
+Memory operands
+程式語言的陣列或是 structure 儲存在記憶體中， 電腦要如何表示和存取？ 
+只有少量的資料可以在暫存器計算，那該如何把資料從記憶體取出到暫存器中？
+使用 data transfer instructions 
+可以在暫存器在記憶體之間移動資料
+1: load memory 》register 
+
+words 一定要在4的倍數的位址 這個叫做 alignment restrictions 之後會提到這樣機制可以加快資料傳輸
+
+
+
 2.4 Signed and Unsigned Numbers 73
+
+
+
+
 2.5 Representing Instructions in the Computer 80
 2.6 Logical Operations 87
 2.7 Instructions for Making Decisions 90
