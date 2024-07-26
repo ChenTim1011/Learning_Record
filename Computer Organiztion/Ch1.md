@@ -214,4 +214,17 @@ workload 執行一組程式可能包含應用程式的集合或是真實程式�
 
 1.10 Fallacies and Pitfalls 
 
+Amdahl's law 評估效能提升的可能性，可以提升的部分被限制在可以提升的特徵。
+
+fallacy：性能的設計和能源效率的設計是沒有關係的
+
+pitfall 以為可以利用效能公式的子集來測量效能
+之前我們提到
+CPU time = Instruction count x CPI x clock cycle time 
+
+像是MIPS=clock rate / CPI x 10^6
+直觀來看 MIPS越大跑越快
+使用MIPS的缺點
+
+
 1.11 Concluding Remarks 
