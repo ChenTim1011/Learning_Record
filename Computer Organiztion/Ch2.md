@@ -45,14 +45,36 @@ Memory operands
 
 words 一定要在4的倍數的位址 這個叫做 alignment restrictions 之後會提到這樣機制可以加快資料傳輸
 
-
-
+ 
 2.4 Signed and Unsigned Numbers 73
+如何表示二進位的數
+sign and magnitude 不太好用
+
+sign bit 最左邊的bit 0 + 1 -
+
+1補數 0和1 互換
+缺點是會有兩個零 正零 負零
+x的補數=2^n-x-1
+000000000 正零
+111111111 負零
 
 
+2補數 主要在用 0和1互換後加1
+觀察 x + ~x = -1 得到 ~x+1=-x
+為什麼叫二補數法
+unsigned sum of n bit + negative n bit = 2^n  
+負的部分  2^n - x
+
+
+biased notation 
+000000000 最負
+111111111 最正
+100000000 0
+之後會介紹這個用法
 
 
 2.5 Representing Instructions in the Computer 80
+
 2.6 Logical Operations 87
 2.7 Instructions for Making Decisions 90
 2.8 Supporting Procedures in Computer Hardware 96
