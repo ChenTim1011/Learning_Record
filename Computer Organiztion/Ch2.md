@@ -75,6 +75,28 @@ biased notation
 
 2.5 Representing Instructions in the Computer 80
 
+指令在電腦中是一連串高低的電子訊號，而且可以數字表示，這一章介紹暫存器號碼對應數字，用數字來表示，每個指令可以拆成多段獨立數字，再把這幾個數字拼起來變成完整指令
+暫存器對應數字可以看小綠卡
+
+指令的片段叫做field, field 用 binary 表示 可以叫 instruction format， binary 表示出來也剛好是32bits 所有MIPS指令是32  bits 長 ' 為了和組合語言分辨 這個數字版本的指令我們叫它 machine languages 一連串的這些指令就叫 machine code 
+MIPS field
+op rs rt rd shamt funct
+655556
+
+這是r rype 指令 後面會有 lw sw 需要兩個暫存器和常數 就沒辦法像上面一樣
+所以接下來有設計原則3 好的設計需要好的妥協
+
+i type 指令
+op rs rt constant 
+6 5 5 16
+
+16 bit的位址表示 load word 指令
+可表示到+-2^15 
+
+
+
+
+
 2.6 Logical Operations 87
 2.7 Instructions for Making Decisions 90
 2.8 Supporting Procedures in Computer Hardware 96
