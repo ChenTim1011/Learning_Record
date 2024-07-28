@@ -5,6 +5,12 @@
 先來做像是履歷格式才知道自己要補哪裡，那我第一個禮拜8/2回去就趕快來做。
 8/2 初步的模板樣式
 
+關於找教授要做的功課，一定要提早準備
+放在自己的備審裡面 感覺比IT邦有用
+或是可以融合進去
+https://www.ptt.cc/bbs/graduate/M.1513290361.A.142.html
+
+
 我先趕快認真讀完計算機組織
 但是之後是想要把老師的研究加上去
 假設要走AI硬體的部分
@@ -15,7 +21,22 @@ AAML 交大的葉教授 研究領域我有興趣
 計算機結構，圖形處理器(GPU)，AI晶片系統
 實驗室
 
- 電腦架構系統實驗室
+電腦架構系統實驗室
+
+今天看了一些關於IC design的部分， Verilog 好像是必備的技能， 還有還在猶豫我是否適合IC相關工作，還是沒有要做這麼底層，有人說半導體是夕陽產業為什麼，現在IC是臺灣很好的發展，但是未來呢？ 我該往哪一條路，答案身為資工系還是寫往底層走，顯示出自己的定位，AI硬體或許是不錯的發展，交大這方面資源比較多，不知道臺大有沒有教授在做 選教授和領域》校名  
+我想先整理一下相關AI硬體的課程 
+
+EDA需要的技能樹 也有  verilog
+https://www.raind.blog/technique_news-zh/technique_news_cad_eda_engineer
+
+Keep Going
+
+「I have not failed. I have just found ten thousand ways that do not work.」by Thomas Edison.
+
+
+
+
+
 
 1:寫完推甄內容和推薦信草稿
 2:技術累積的部分=>參加IT邦的比賽
