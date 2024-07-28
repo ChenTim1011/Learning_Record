@@ -135,7 +135,16 @@ frame pointer 好處是所有在stack參考一下到的變數在 procedure 中 �
 使用lui 先把左邊的16 bits 給放進去
 右邊16bits是0 再用ori 把 右邊16bits 放進去 因為自己和0 or 還會是自己 記得要算一下左和右 binary 的 總和
 
+
+
 2.10 MIPS Addressing for 32-Bit Immediates and Addresses 111
+平行執行在彼此程式獨立的時候比較好解決，但平行化程式之間必須合作，意思是有些任務會需要寫入新的值，另外一個人必須要讀取，要知道何時適合讀取，而不會發生同步的問題，這種問題叫 data race ? 為了解決同步的問題
+我們有 lock unlock ， 可以建立一個區域， 同時只有一人可以進去存取叫做 mutual exclusive 。
+如果我們需要在多處理器上面，來製作同步 需要一組硬體 primitives 具有 atomically 讀取和修改 記憶體位置 。
+基本同步的操作叫做 atomic exchange or swap  我們來製作一個簡單的 lock 0代表 lock 可以 lock 1 代表不行。
+
+MIPS 會用 load linked ll and a special store called store condition sc 
+
 
 2.11 Parallelism and Instructions: Synchronization 121
 2.12 Translating and Starting a Program 123
