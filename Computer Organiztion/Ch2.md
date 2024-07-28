@@ -117,6 +117,19 @@ op rs rt constant
 
 2.7 Instructions for Making Decisions 90
 2.8 Supporting Procedures in Computer Hardware 96
+
+program counter 指令位置的暫存器
+如果當今天引數超過四個，我們想要更多引數，就必須使用 stack, 還需要 stack pointer。 stack 增長由 higher address 到 lower address 所以當push進去會是減的。
+為了避免我們儲存和恢復沒有使用的值
+有可能出現在 temporary 的暫存器
+所以 MIPS 分成兩類 t0-t9 不會被 callee保存 s0-s7 一定要保存在 procedure call  如果使用由 callee 保存和恢復 
+
+leaf procedure 沒有呼叫其他的函式
+
+
+
+
+
 2.9 Communicating with People 106
 2.10 MIPS Addressing for 32-Bit Immediates and Addresses 111
 2.11 Parallelism and Instructions: Synchronization 121
