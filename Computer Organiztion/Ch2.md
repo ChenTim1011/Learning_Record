@@ -20,11 +20,6 @@ add a a d
 有規律方便簡化規則
 
 
-
-
-
-
-
 2.3 Operands of the Computer Hardware 66
 運算指令的運算元擺放的位置有限制，必須放在特定的暫存器中。
 MIPS 架構是32位元，32位元又稱為一個word
@@ -126,12 +121,22 @@ program counter 指令位置的暫存器
 
 leaf procedure 沒有呼叫其他的函式
 
+procedure frame stack片段包含procedure 儲存的暫存器和區域變數
+
+frame pointer 指出 procedure frame 裡面 第一個 word
+
+frame pointer 好處是所有在stack參考一下到的變數在 procedure 中 有同樣的 offset 但是 不一定都有 frame pointer GNU MIPS C compiler 有使用fp 但是 C compiler from MIPS 並沒有fp 第30的暫存器被當成是s8
 
 
 
 
 2.9 Communicating with People 106
+如果暫存器要放32bit怎麼辦？
+使用lui 先把左邊的16 bits 給放進去
+右邊16bits是0 再用ori 把 右邊16bits 放進去 因為自己和0 or 還會是自己 記得要算一下左和右 binary 的 總和
+
 2.10 MIPS Addressing for 32-Bit Immediates and Addresses 111
+
 2.11 Parallelism and Instructions: Synchronization 121
 2.12 Translating and Starting a Program 123
 2.13 A C Sort Example to Put It All Together 132
