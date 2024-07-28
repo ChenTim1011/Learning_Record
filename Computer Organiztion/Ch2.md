@@ -82,6 +82,11 @@ biased notation
 MIPS field
 op rs rt rd shamt funct
 655556
+opcode 做什麼動作
+先給一個pattern 後面function code 
+shamt 為什麼主要5bit 最多shift 31 bits 就好了！ 
+
+
 
 這是r rype 指令 後面會有 lw sw 需要兩個暫存器和常數 就沒辦法像上面一樣
 所以接下來有設計原則3 好的設計需要好的妥協
@@ -93,11 +98,23 @@ op rs rt constant
 16 bit的位址表示 load word 指令
 可表示到+-2^15 
 
+好的設計要有好的妥協
+所有MIPS指令長度相同，但是有不同的format
+雖然很多format會讓設計變得複雜，但是我們可以讓彼此format相似，不同類型的format有不同的op code 所以硬體知道該如何實作。
+如果暫存器每一個field用更多的vit去表示，會降低速度，因為smaller is faster大多設計在16和32 bits
 
-
-
+現在電腦設計兩個原則
+1:指令被表示成數字
+2:程式儲存在記憶體可以被讀取或是寫入
+這兩個原則變成stored program 的概念
+記憶體可以包含多個程式的machine code
+這些已經存在的指令，具有 binary compatibility 的特性，能夠讓電腦繼承 ready made  軟體
 
 2.6 Logical Operations 87
+
+
+
+
 2.7 Instructions for Making Decisions 90
 2.8 Supporting Procedures in Computer Hardware 96
 2.9 Communicating with People 106
