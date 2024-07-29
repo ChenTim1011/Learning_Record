@@ -12,9 +12,11 @@ The content is a mix of tutorials from various websites.<br>
 
 忽略基本功的重要性而憑感覺依樣畫葫蘆，確實是相對簡單輕鬆的。但如果你把這項技術當作專業能力投入在工作上的話，這可能就不是那麼理想的專業態度的展現。
 你得先尊重自己是一位擁有專業知識與技術的工程師，<br>
-**而不是只個懂皮毛的流水線作業員=>這我QQ**
+**而不是只個懂皮毛的流水線作業員**
 
 ，則你的工作夥伴乃至於這個業界，也才會尊重你的專業能力以及態度。
+
+不能是憑感覺寫這樣很危險，我要學習背後的邏輯是什麼，遇到問題才知道該如何解決，這也是和別人拉開差距的作法
 
 To achieve meaningful progress and internalize knowledge into your thought process, you must consciously engage in practical accumulation while mastering the correct core concepts. Both aspects are indispensable.
 
