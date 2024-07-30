@@ -11,9 +11,9 @@ I focus on learning computer organization and architecture
  第一週 基本推甄資料和計算機結構知識
 
 計算機組織前二章內容 回臺北認真做推甄資料
+第二章後面arm x86 讀一下不同的指令集架構
 要先放基本架構裝飾，後面再來填內容
 
-
-
+要先解決手機的問題 這台灌MDM會有問題，MDM只能選擇一台灌
 
 
