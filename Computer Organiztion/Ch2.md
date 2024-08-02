@@ -147,6 +147,13 @@ MIPS 會用 load linked ll and a special store called store condition sc
 
 
 2.11 Parallelism and Instructions: Synchronization 121
+
+
+Linker的步驟 1. 放code 和 data module symbolically 在記憶體 2: 決定資料位址和指令Label
+3:Patch 內部和外部參考 linker使用重定位資訊和 symbol table 在每個 object file to resolve 所有沒有定義的label  
+
+這樣的參考會在分支指令 跳躍指令 和 資料位址 linker有點像編輯器 它找到舊的位址然後用新的位址來代替 linker 全名叫link editor patch code的速度比重新編譯組譯快
+
 2.12 Translating and Starting a Program 123
 2.13 A C Sort Example to Put It All Together 132
 2.14 Arrays versus Pointers 141
