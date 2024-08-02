@@ -154,6 +154,10 @@ Linker的步驟 1. 放code 和 data module symbolically 在記憶體 2: 決定�
 
 這樣的參考會在分支指令 跳躍指令 和 資料位址 linker有點像編輯器 它找到舊的位址然後用新的位址來代替 linker 全名叫link editor patch code的速度比重新編譯組譯快
 
+如果所有的外部參考都解決 linker 下一個會決定每一個模組會佔的記憶體位置 因為檔案是 isolation 組譯 組譯不知道module 指令和資料會被相對其它的模組代替 當linker 把 module 放到記憶體 all absolute reference 記憶體位址和暫存器沒有相關 一定是要 relocated 去反應真正的位置
+Linker產生電腦可以執行的可執行檔 檔案和 object file 有一樣的格式 除了包含一些 no unresolved reference  包含 symbol table 和 debugging information 
+
+
 2.12 Translating and Starting a Program 123
 2.13 A C Sort Example to Put It All Together 132
 2.14 Arrays versus Pointers 141
