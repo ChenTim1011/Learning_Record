@@ -15,6 +15,7 @@ I focus on learning computer organization and architecture
 
 第一周放假 圖書館借中譯本，下禮拜當兵專心讀這一本  準備基本推甄資料  要先放基本架構裝飾，後面再來填內容 
 
+第二周放假 填入基本推甄資料的內容 先做完初版的部分  計算機結構要看完前三章
 
 要先解決手機的問題 這台灌MDM會有問題，MDM只能選擇一台灌
 
